@@ -851,17 +851,17 @@ Includes silkscreen</description>
 </symbol>
 <symbol name="FLOATING_P0.00-07">
 <description>Generic port 0, 0-7</description>
-<pin name="P0.00" x="-2.54" y="10.16" length="short"/>
+<pin name="P0.00" x="-2.54" y="10.16" length="short" swaplevel="1"/>
 <wire x1="1.27" y1="-8.89" x2="0" y2="-8.89" width="0.254" layer="94"/>
 <wire x1="0" y1="-8.89" x2="0" y2="11.43" width="0.254" layer="94"/>
 <wire x1="0" y1="11.43" x2="1.27" y2="11.43" width="0.254" layer="94"/>
-<pin name="P0.01" x="-2.54" y="7.62" length="short"/>
-<pin name="P0.02" x="-2.54" y="5.08" length="short"/>
-<pin name="P0.03" x="-2.54" y="2.54" length="short"/>
-<pin name="P0.04" x="-2.54" y="0" length="short"/>
-<pin name="P0.05" x="-2.54" y="-2.54" length="short"/>
-<pin name="P0.06" x="-2.54" y="-5.08" length="short"/>
-<pin name="P0.07" x="-2.54" y="-7.62" length="short"/>
+<pin name="P0.01" x="-2.54" y="7.62" length="short" swaplevel="1"/>
+<pin name="P0.02" x="-2.54" y="5.08" length="short" swaplevel="1"/>
+<pin name="P0.03" x="-2.54" y="2.54" length="short" swaplevel="1"/>
+<pin name="P0.04" x="-2.54" y="0" length="short" swaplevel="1"/>
+<pin name="P0.05" x="-2.54" y="-2.54" length="short" swaplevel="1"/>
+<pin name="P0.06" x="-2.54" y="-5.08" length="short" swaplevel="1"/>
+<pin name="P0.07" x="-2.54" y="-7.62" length="short" swaplevel="1"/>
 <text x="9.017" y="6.985" size="1.27" layer="110">&gt;P001</text>
 <text x="9.017" y="9.525" size="1.27" layer="110">&gt;P000</text>
 <text x="9.017" y="4.445" size="1.27" layer="110">&gt;P002</text>
@@ -874,17 +874,17 @@ Includes silkscreen</description>
 </symbol>
 <symbol name="FLOATING_P0.08-15">
 <description>Generic Port 0, 8-15</description>
-<pin name="P0.08" x="-2.54" y="10.16" length="short"/>
+<pin name="P0.08" x="-2.54" y="10.16" length="short" swaplevel="1"/>
 <wire x1="1.27" y1="-8.89" x2="0" y2="-8.89" width="0.254" layer="94"/>
 <wire x1="0" y1="-8.89" x2="0" y2="11.43" width="0.254" layer="94"/>
 <wire x1="0" y1="11.43" x2="1.27" y2="11.43" width="0.254" layer="94"/>
-<pin name="P0.09" x="-2.54" y="7.62" length="short"/>
-<pin name="P0.10" x="-2.54" y="5.08" length="short"/>
-<pin name="P0.11" x="-2.54" y="2.54" length="short"/>
-<pin name="P0.12" x="-2.54" y="0" length="short"/>
-<pin name="P0.13" x="-2.54" y="-2.54" length="short"/>
-<pin name="P0.14" x="-2.54" y="-5.08" length="short"/>
-<pin name="P0.15" x="-2.54" y="-7.62" length="short"/>
+<pin name="P0.09" x="-2.54" y="7.62" length="short" swaplevel="1"/>
+<pin name="P0.10" x="-2.54" y="5.08" length="short" swaplevel="1"/>
+<pin name="P0.11" x="-2.54" y="2.54" length="short" swaplevel="1"/>
+<pin name="P0.12" x="-2.54" y="0" length="short" swaplevel="1"/>
+<pin name="P0.13" x="-2.54" y="-2.54" length="short" swaplevel="1"/>
+<pin name="P0.14" x="-2.54" y="-5.08" length="short" swaplevel="1"/>
+<pin name="P0.15" x="-2.54" y="-7.62" length="short" swaplevel="1"/>
 <text x="9.017" y="6.985" size="1.27" layer="110">&gt;P009</text>
 <text x="9.017" y="9.525" size="1.27" layer="110">&gt;P008</text>
 <text x="9.017" y="4.445" size="1.27" layer="110">&gt;P010</text>
@@ -897,17 +897,17 @@ Includes silkscreen</description>
 </symbol>
 <symbol name="FLOATING_P0.16-23">
 <description>Generic port 0, 16-23</description>
-<pin name="P0.16" x="-2.54" y="10.16" length="short"/>
+<pin name="P0.16" x="-2.54" y="10.16" length="short" swaplevel="1"/>
 <wire x1="1.27" y1="-8.89" x2="0" y2="-8.89" width="0.254" layer="94"/>
 <wire x1="0" y1="-8.89" x2="0" y2="11.43" width="0.254" layer="94"/>
 <wire x1="0" y1="11.43" x2="1.27" y2="11.43" width="0.254" layer="94"/>
-<pin name="P0.17" x="-2.54" y="7.62" length="short"/>
-<pin name="P0.18" x="-2.54" y="5.08" length="short"/>
-<pin name="P0.19" x="-2.54" y="2.54" length="short"/>
-<pin name="P0.20" x="-2.54" y="0" length="short"/>
-<pin name="P0.21" x="-2.54" y="-2.54" length="short"/>
-<pin name="P0.22" x="-2.54" y="-5.08" length="short"/>
-<pin name="P0.23" x="-2.54" y="-7.62" length="short"/>
+<pin name="P0.17" x="-2.54" y="7.62" length="short" swaplevel="1"/>
+<pin name="P0.18" x="-2.54" y="5.08" length="short" swaplevel="1"/>
+<pin name="P0.19" x="-2.54" y="2.54" length="short" swaplevel="1"/>
+<pin name="P0.20" x="-2.54" y="0" length="short" swaplevel="1"/>
+<pin name="P0.21" x="-2.54" y="-2.54" length="short" swaplevel="1"/>
+<pin name="P0.22" x="-2.54" y="-5.08" length="short" swaplevel="1"/>
+<pin name="P0.23" x="-2.54" y="-7.62" length="short" swaplevel="1"/>
 <text x="9.017" y="6.985" size="1.27" layer="110">&gt;P017</text>
 <text x="9.017" y="9.525" size="1.27" layer="110">&gt;P016</text>
 <text x="9.017" y="4.445" size="1.27" layer="110">&gt;P018</text>
@@ -920,16 +920,16 @@ Includes silkscreen</description>
 </symbol>
 <symbol name="FLOATING_P0.24-30">
 <description>Generic port 0, 24-31</description>
-<pin name="P0.24" x="-2.54" y="7.62" length="short"/>
+<pin name="P0.24" x="-2.54" y="7.62" length="short" swaplevel="1"/>
 <wire x1="1.27" y1="-8.89" x2="0" y2="-8.89" width="0.254" layer="94"/>
 <wire x1="0" y1="-8.89" x2="0" y2="8.89" width="0.254" layer="94"/>
 <wire x1="0" y1="8.89" x2="1.27" y2="8.89" width="0.254" layer="94"/>
-<pin name="P0.25" x="-2.54" y="5.08" length="short"/>
-<pin name="P0.26" x="-2.54" y="2.54" length="short"/>
-<pin name="P0.27" x="-2.54" y="0" length="short"/>
-<pin name="P0.28" x="-2.54" y="-2.54" length="short"/>
-<pin name="P0.29" x="-2.54" y="-5.08" length="short"/>
-<pin name="P0.30" x="-2.54" y="-7.62" length="short"/>
+<pin name="P0.25" x="-2.54" y="5.08" length="short" swaplevel="1"/>
+<pin name="P0.26" x="-2.54" y="2.54" length="short" swaplevel="1"/>
+<pin name="P0.27" x="-2.54" y="0" length="short" swaplevel="1"/>
+<pin name="P0.28" x="-2.54" y="-2.54" length="short" swaplevel="1"/>
+<pin name="P0.29" x="-2.54" y="-5.08" length="short" swaplevel="1"/>
+<pin name="P0.30" x="-2.54" y="-7.62" length="short" swaplevel="1"/>
 <text x="9.017" y="4.445" size="1.27" layer="110">&gt;P025</text>
 <text x="9.017" y="6.985" size="1.27" layer="110">&gt;P024</text>
 <text x="9.017" y="1.905" size="1.27" layer="110">&gt;P026</text>
