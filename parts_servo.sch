@@ -6,24 +6,24 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="2" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
-<layer number="1" name="Top" color="4" fill="1" visible="yes" active="no"/>
-<layer number="2" name="Route2" color="1" fill="3" visible="yes" active="no"/>
-<layer number="3" name="Route3" color="4" fill="3" visible="yes" active="no"/>
-<layer number="4" name="Route4" color="1" fill="4" visible="yes" active="no"/>
-<layer number="5" name="Route5" color="4" fill="4" visible="yes" active="no"/>
-<layer number="6" name="Route6" color="1" fill="8" visible="yes" active="no"/>
-<layer number="7" name="Route7" color="4" fill="8" visible="yes" active="no"/>
-<layer number="8" name="Route8" color="1" fill="2" visible="yes" active="no"/>
-<layer number="9" name="Route9" color="4" fill="2" visible="yes" active="no"/>
-<layer number="10" name="Route10" color="1" fill="7" visible="yes" active="no"/>
-<layer number="11" name="Route11" color="4" fill="7" visible="yes" active="no"/>
-<layer number="12" name="Route12" color="1" fill="5" visible="yes" active="no"/>
-<layer number="13" name="Route13" color="4" fill="5" visible="yes" active="no"/>
-<layer number="14" name="Route14" color="1" fill="6" visible="yes" active="no"/>
-<layer number="15" name="Route15" color="4" fill="6" visible="yes" active="no"/>
-<layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="no"/>
+<layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
+<layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
+<layer number="3" name="Route3" color="4" fill="3" visible="no" active="no"/>
+<layer number="4" name="Route4" color="1" fill="4" visible="no" active="no"/>
+<layer number="5" name="Route5" color="4" fill="4" visible="no" active="no"/>
+<layer number="6" name="Route6" color="1" fill="8" visible="no" active="no"/>
+<layer number="7" name="Route7" color="4" fill="8" visible="no" active="no"/>
+<layer number="8" name="Route8" color="1" fill="2" visible="no" active="no"/>
+<layer number="9" name="Route9" color="4" fill="2" visible="no" active="no"/>
+<layer number="10" name="Route10" color="1" fill="7" visible="no" active="no"/>
+<layer number="11" name="Route11" color="4" fill="7" visible="no" active="no"/>
+<layer number="12" name="Route12" color="1" fill="5" visible="no" active="no"/>
+<layer number="13" name="Route13" color="4" fill="5" visible="no" active="no"/>
+<layer number="14" name="Route14" color="1" fill="6" visible="no" active="no"/>
+<layer number="15" name="Route15" color="4" fill="6" visible="no" active="no"/>
+<layer number="16" name="Bottom" color="1" fill="1" visible="no" active="no"/>
 <layer number="17" name="Pads" color="2" fill="1" visible="no" active="no"/>
 <layer number="18" name="Vias" color="2" fill="1" visible="no" active="no"/>
 <layer number="19" name="Unrouted" color="6" fill="1" visible="no" active="no"/>
@@ -64,11 +64,13 @@
 <layer number="54" name="bGND_GNDA" color="7" fill="1" visible="no" active="no"/>
 <layer number="56" name="wert" color="7" fill="1" visible="no" active="no"/>
 <layer number="91" name="Nets" color="2" fill="1" visible="yes" active="yes"/>
+<layer number="92" name="Busses" color="1" fill="1" visible="yes" active="yes"/>
 <layer number="93" name="Pins" color="2" fill="1" visible="no" active="yes"/>
 <layer number="94" name="Symbols" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="95" name="Names" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="96" name="Values" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="97" name="Info" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="98" name="Guide" color="6" fill="1" visible="yes" active="yes"/>
 <layer number="110" name="labels" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="112" name="hints" color="4" fill="1" visible="yes" active="yes"/>
 </layers>
@@ -854,17 +856,17 @@ Used by Richtek.</description>
 </symbol>
 <symbol name="FLOATING_P0.00-07">
 <description>Generic port 0, 0-7</description>
-<pin name="P0.00" x="-2.54" y="10.16" length="short"/>
+<pin name="P0.00" x="-2.54" y="10.16" length="short" swaplevel="1"/>
 <wire x1="1.27" y1="-8.89" x2="0" y2="-8.89" width="0.254" layer="94"/>
 <wire x1="0" y1="-8.89" x2="0" y2="11.43" width="0.254" layer="94"/>
 <wire x1="0" y1="11.43" x2="1.27" y2="11.43" width="0.254" layer="94"/>
-<pin name="P0.01" x="-2.54" y="7.62" length="short"/>
-<pin name="P0.02" x="-2.54" y="5.08" length="short"/>
-<pin name="P0.03" x="-2.54" y="2.54" length="short"/>
-<pin name="P0.04" x="-2.54" y="0" length="short"/>
-<pin name="P0.05" x="-2.54" y="-2.54" length="short"/>
-<pin name="P0.06" x="-2.54" y="-5.08" length="short"/>
-<pin name="P0.07" x="-2.54" y="-7.62" length="short"/>
+<pin name="P0.01" x="-2.54" y="7.62" length="short" swaplevel="1"/>
+<pin name="P0.02" x="-2.54" y="5.08" length="short" swaplevel="1"/>
+<pin name="P0.03" x="-2.54" y="2.54" length="short" swaplevel="1"/>
+<pin name="P0.04" x="-2.54" y="0" length="short" swaplevel="1"/>
+<pin name="P0.05" x="-2.54" y="-2.54" length="short" swaplevel="1"/>
+<pin name="P0.06" x="-2.54" y="-5.08" length="short" swaplevel="1"/>
+<pin name="P0.07" x="-2.54" y="-7.62" length="short" swaplevel="1"/>
 <text x="9.017" y="6.985" size="1.27" layer="110">&gt;P001</text>
 <text x="9.017" y="9.525" size="1.27" layer="110">&gt;P000</text>
 <text x="9.017" y="4.445" size="1.27" layer="110">&gt;P002</text>
@@ -877,17 +879,17 @@ Used by Richtek.</description>
 </symbol>
 <symbol name="FLOATING_P0.08-15">
 <description>Generic Port 0, 8-15</description>
-<pin name="P0.08" x="-2.54" y="10.16" length="short"/>
+<pin name="P0.08" x="-2.54" y="10.16" length="short" swaplevel="1"/>
 <wire x1="1.27" y1="-8.89" x2="0" y2="-8.89" width="0.254" layer="94"/>
 <wire x1="0" y1="-8.89" x2="0" y2="11.43" width="0.254" layer="94"/>
 <wire x1="0" y1="11.43" x2="1.27" y2="11.43" width="0.254" layer="94"/>
-<pin name="P0.09" x="-2.54" y="7.62" length="short"/>
-<pin name="P0.10" x="-2.54" y="5.08" length="short"/>
-<pin name="P0.11" x="-2.54" y="2.54" length="short"/>
-<pin name="P0.12" x="-2.54" y="0" length="short"/>
-<pin name="P0.13" x="-2.54" y="-2.54" length="short"/>
-<pin name="P0.14" x="-2.54" y="-5.08" length="short"/>
-<pin name="P0.15" x="-2.54" y="-7.62" length="short"/>
+<pin name="P0.09" x="-2.54" y="7.62" length="short" swaplevel="1"/>
+<pin name="P0.10" x="-2.54" y="5.08" length="short" swaplevel="1"/>
+<pin name="P0.11" x="-2.54" y="2.54" length="short" swaplevel="1"/>
+<pin name="P0.12" x="-2.54" y="0" length="short" swaplevel="1"/>
+<pin name="P0.13" x="-2.54" y="-2.54" length="short" swaplevel="1"/>
+<pin name="P0.14" x="-2.54" y="-5.08" length="short" swaplevel="1"/>
+<pin name="P0.15" x="-2.54" y="-7.62" length="short" swaplevel="1"/>
 <text x="9.017" y="6.985" size="1.27" layer="110">&gt;P009</text>
 <text x="9.017" y="9.525" size="1.27" layer="110">&gt;P008</text>
 <text x="9.017" y="4.445" size="1.27" layer="110">&gt;P010</text>
@@ -900,17 +902,17 @@ Used by Richtek.</description>
 </symbol>
 <symbol name="FLOATING_P0.16-23">
 <description>Generic port 0, 16-23</description>
-<pin name="P0.16" x="-2.54" y="10.16" length="short"/>
+<pin name="P0.16" x="-2.54" y="10.16" length="short" swaplevel="1"/>
 <wire x1="1.27" y1="-8.89" x2="0" y2="-8.89" width="0.254" layer="94"/>
 <wire x1="0" y1="-8.89" x2="0" y2="11.43" width="0.254" layer="94"/>
 <wire x1="0" y1="11.43" x2="1.27" y2="11.43" width="0.254" layer="94"/>
-<pin name="P0.17" x="-2.54" y="7.62" length="short"/>
-<pin name="P0.18" x="-2.54" y="5.08" length="short"/>
-<pin name="P0.19" x="-2.54" y="2.54" length="short"/>
-<pin name="P0.20" x="-2.54" y="0" length="short"/>
-<pin name="P0.21" x="-2.54" y="-2.54" length="short"/>
-<pin name="P0.22" x="-2.54" y="-5.08" length="short"/>
-<pin name="P0.23" x="-2.54" y="-7.62" length="short"/>
+<pin name="P0.17" x="-2.54" y="7.62" length="short" swaplevel="1"/>
+<pin name="P0.18" x="-2.54" y="5.08" length="short" swaplevel="1"/>
+<pin name="P0.19" x="-2.54" y="2.54" length="short" swaplevel="1"/>
+<pin name="P0.20" x="-2.54" y="0" length="short" swaplevel="1"/>
+<pin name="P0.21" x="-2.54" y="-2.54" length="short" swaplevel="1"/>
+<pin name="P0.22" x="-2.54" y="-5.08" length="short" swaplevel="1"/>
+<pin name="P0.23" x="-2.54" y="-7.62" length="short" swaplevel="1"/>
 <text x="9.017" y="6.985" size="1.27" layer="110">&gt;P017</text>
 <text x="9.017" y="9.525" size="1.27" layer="110">&gt;P016</text>
 <text x="9.017" y="4.445" size="1.27" layer="110">&gt;P018</text>
@@ -923,16 +925,16 @@ Used by Richtek.</description>
 </symbol>
 <symbol name="FLOATING_P0.24-30">
 <description>Generic port 0, 24-31</description>
-<pin name="P0.24" x="-2.54" y="7.62" length="short"/>
+<pin name="P0.24" x="-2.54" y="7.62" length="short" swaplevel="1"/>
 <wire x1="1.27" y1="-8.89" x2="0" y2="-8.89" width="0.254" layer="94"/>
 <wire x1="0" y1="-8.89" x2="0" y2="8.89" width="0.254" layer="94"/>
 <wire x1="0" y1="8.89" x2="1.27" y2="8.89" width="0.254" layer="94"/>
-<pin name="P0.25" x="-2.54" y="5.08" length="short"/>
-<pin name="P0.26" x="-2.54" y="2.54" length="short"/>
-<pin name="P0.27" x="-2.54" y="0" length="short"/>
-<pin name="P0.28" x="-2.54" y="-2.54" length="short"/>
-<pin name="P0.29" x="-2.54" y="-5.08" length="short"/>
-<pin name="P0.30" x="-2.54" y="-7.62" length="short"/>
+<pin name="P0.25" x="-2.54" y="5.08" length="short" swaplevel="1"/>
+<pin name="P0.26" x="-2.54" y="2.54" length="short" swaplevel="1"/>
+<pin name="P0.27" x="-2.54" y="0" length="short" swaplevel="1"/>
+<pin name="P0.28" x="-2.54" y="-2.54" length="short" swaplevel="1"/>
+<pin name="P0.29" x="-2.54" y="-5.08" length="short" swaplevel="1"/>
+<pin name="P0.30" x="-2.54" y="-7.62" length="short" swaplevel="1"/>
 <text x="9.017" y="4.445" size="1.27" layer="110">&gt;P025</text>
 <text x="9.017" y="6.985" size="1.27" layer="110">&gt;P024</text>
 <text x="9.017" y="1.905" size="1.27" layer="110">&gt;P026</text>
@@ -983,6 +985,7 @@ Undated, no-graphics PARTS logo with copyright mark.</description>
 <text x="-3.556" y="1.524" size="2.032" layer="94" ratio="20">C</text>
 </symbol>
 <symbol name="LOGO(1.07X0.9)">
+<description>Awesome</description>
 <rectangle x1="0.993140625" y1="-0.04318125" x2="1.0795" y2="0.04318125" layer="94"/>
 <rectangle x1="1.424940625" y1="-0.04318125" x2="1.5113" y2="0.04318125" layer="94"/>
 <rectangle x1="1.68401875" y1="-0.04318125" x2="1.77038125" y2="0.04318125" layer="94"/>
@@ -11931,7 +11934,7 @@ Connector</text>
 <attribute name="VOLTAGE" x="104.648" y="356.87" size="1.778" layer="96"/>
 </instance>
 <instance part="C2" gate="CE" x="142.24" y="364.49"/>
-<instance part="GND13" gate="GND" x="129.54" y="180.34"/>
+<instance part="GND13" gate="GND" x="129.54" y="170.18"/>
 <instance part="3.3V3" gate="3.3V" x="130.81" y="200.66"/>
 <instance part="C20" gate="CE" x="162.56" y="364.49" rot="MR0"/>
 <instance part="GND14" gate="GND" x="250.19" y="149.86"/>
@@ -12040,7 +12043,7 @@ Connector</text>
 <segment>
 <pinref part="GND13" gate="GND" pin="GND"/>
 <pinref part="JP2" gate="A" pin="8"/>
-<wire x1="129.54" y1="182.88" x2="129.54" y2="186.69" width="0.1524" layer="91"/>
+<wire x1="129.54" y1="172.72" x2="129.54" y2="186.69" width="0.1524" layer="91"/>
 <wire x1="129.54" y1="186.69" x2="128.27" y2="186.69" width="0.1524" layer="91"/>
 </segment>
 <segment>
@@ -12414,54 +12417,23 @@ Connector</text>
 <wire x1="243.84" y1="142.24" x2="247.65" y2="142.24" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="SENSOR3" class="0">
-<segment>
-<pinref part="JP2" gate="A" pin="3"/>
-<wire x1="120.65" y1="191.77" x2="113.03" y2="191.77" width="0.1524" layer="91"/>
-<wire x1="113.03" y1="191.77" x2="113.03" y2="180.34" width="0.1524" layer="91"/>
-<pinref part="U50" gate="P0.00-07" pin="P0.01"/>
-<wire x1="95.25" y1="180.34" x2="113.03" y2="180.34" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="SENSOR4" class="0">
-<segment>
-<pinref part="JP2" gate="A" pin="4"/>
-<wire x1="128.27" y1="191.77" x2="137.16" y2="191.77" width="0.1524" layer="91"/>
-<wire x1="137.16" y1="191.77" x2="137.16" y2="170.18" width="0.1524" layer="91"/>
-<pinref part="U50" gate="P0.00-07" pin="P0.05"/>
-<wire x1="95.25" y1="170.18" x2="137.16" y2="170.18" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="SENSOR5" class="0">
-<segment>
-<pinref part="JP2" gate="A" pin="5"/>
-<wire x1="120.65" y1="189.23" x2="114.3" y2="189.23" width="0.1524" layer="91"/>
-<wire x1="114.3" y1="189.23" x2="114.3" y2="177.8" width="0.1524" layer="91"/>
-<pinref part="U50" gate="P0.00-07" pin="P0.02"/>
-<wire x1="95.25" y1="177.8" x2="114.3" y2="177.8" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="SENSOR6" class="0">
-<segment>
-<pinref part="JP2" gate="A" pin="6"/>
-<wire x1="128.27" y1="189.23" x2="134.62" y2="189.23" width="0.1524" layer="91"/>
-<wire x1="134.62" y1="189.23" x2="134.62" y2="172.72" width="0.1524" layer="91"/>
-<pinref part="U50" gate="P0.00-07" pin="P0.04"/>
-<wire x1="95.25" y1="172.72" x2="134.62" y2="172.72" width="0.1524" layer="91"/>
-</segment>
-</net>
 <net name="PWM1" class="0">
 <segment>
-<pinref part="U50" gate="P0.08-15" pin="P0.08"/>
+<pinref part="U50" gate="P0.08-15" pin="P0.09"/>
 <pinref part="U100" gate="U" pin="PWM1"/>
-<wire x1="95.25" y1="157.48" x2="177.8" y2="157.48" width="0.1524" layer="91"/>
+<wire x1="95.25" y1="154.94" x2="162.56" y2="154.94" width="0.1524" layer="91"/>
+<wire x1="162.56" y1="154.94" x2="162.56" y2="157.48" width="0.1524" layer="91"/>
+<wire x1="162.56" y1="157.48" x2="177.8" y2="157.48" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="PWM2" class="0">
 <segment>
 <pinref part="U100" gate="U" pin="PWM2"/>
-<pinref part="U50" gate="P0.08-15" pin="P0.09"/>
-<wire x1="177.8" y1="154.94" x2="95.25" y2="154.94" width="0.1524" layer="91"/>
+<pinref part="U50" gate="P0.08-15" pin="P0.12"/>
+<wire x1="177.8" y1="154.94" x2="168.91" y2="154.94" width="0.1524" layer="91"/>
+<wire x1="168.91" y1="154.94" x2="166.37" y2="154.94" width="0.1524" layer="91"/>
+<wire x1="166.37" y1="154.94" x2="166.37" y2="147.32" width="0.1524" layer="91"/>
+<wire x1="166.37" y1="147.32" x2="95.25" y2="147.32" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="PWM1_EN" class="0">
@@ -12485,10 +12457,10 @@ Connector</text>
 <net name="PWM_POR" class="0">
 <segment>
 <pinref part="U100" gate="U" pin="POR"/>
-<wire x1="177.8" y1="134.62" x2="171.45" y2="134.62" width="0.1524" layer="91"/>
-<wire x1="171.45" y1="134.62" x2="171.45" y2="147.32" width="0.1524" layer="91"/>
-<pinref part="U50" gate="P0.08-15" pin="P0.12"/>
-<wire x1="171.45" y1="147.32" x2="95.25" y2="147.32" width="0.1524" layer="91"/>
+<wire x1="177.8" y1="134.62" x2="138.43" y2="134.62" width="0.1524" layer="91"/>
+<wire x1="138.43" y1="134.62" x2="138.43" y2="157.48" width="0.1524" layer="91"/>
+<pinref part="U50" gate="P0.08-15" pin="P0.08"/>
+<wire x1="138.43" y1="157.48" x2="95.25" y2="157.48" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="UNIPOLAR_INPUT" class="0">
@@ -12505,18 +12477,20 @@ Connector</text>
 <segment>
 <pinref part="U20" gate="U" pin="D"/>
 <wire x1="105.41" y1="299.72" x2="157.48" y2="299.72" width="0.1524" layer="91"/>
-<pinref part="U50" gate="P0.16-23" pin="P0.20"/>
 <wire x1="157.48" y1="299.72" x2="157.48" y2="121.92" width="0.1524" layer="91"/>
-<wire x1="157.48" y1="121.92" x2="95.25" y2="121.92" width="0.1524" layer="91"/>
+<pinref part="U50" gate="P0.24-31" pin="P0.24"/>
+<wire x1="95.25" y1="106.68" x2="157.48" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="157.48" y1="106.68" x2="157.48" y2="121.92" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="DIFFERENTIAL_INPUT" class="0">
 <segment>
 <pinref part="U20" gate="U" pin="R"/>
 <wire x1="105.41" y1="309.88" x2="158.75" y2="309.88" width="0.1524" layer="91"/>
-<pinref part="U50" gate="P0.16-23" pin="P0.21"/>
 <wire x1="158.75" y1="309.88" x2="158.75" y2="119.38" width="0.1524" layer="91"/>
-<wire x1="158.75" y1="119.38" x2="95.25" y2="119.38" width="0.1524" layer="91"/>
+<pinref part="U50" gate="P0.24-31" pin="P0.29"/>
+<wire x1="95.25" y1="93.98" x2="158.75" y2="93.98" width="0.1524" layer="91"/>
+<wire x1="158.75" y1="93.98" x2="158.75" y2="119.38" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="UNIPOLAR_OUTPUT" class="0">
@@ -12533,18 +12507,21 @@ Connector</text>
 <segment>
 <pinref part="U20" gate="U" pin="DE"/>
 <wire x1="105.41" y1="304.8" x2="151.13" y2="304.8" width="0.1524" layer="91"/>
-<pinref part="U50" gate="P0.16-23" pin="P0.18"/>
 <wire x1="151.13" y1="304.8" x2="151.13" y2="127" width="0.1524" layer="91"/>
-<wire x1="151.13" y1="127" x2="95.25" y2="127" width="0.1524" layer="91"/>
+<pinref part="U50" gate="P0.24-31" pin="P0.25"/>
+<wire x1="95.25" y1="104.14" x2="151.13" y2="104.14" width="0.1524" layer="91"/>
+<wire x1="151.13" y1="104.14" x2="151.13" y2="127" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="DIFFERENTIAL_INPUT_EN" class="0">
 <segment>
 <pinref part="U20" gate="U" pin="!RE!"/>
 <wire x1="105.41" y1="307.34" x2="152.4" y2="307.34" width="0.1524" layer="91"/>
-<pinref part="U50" gate="P0.16-23" pin="P0.19"/>
 <wire x1="152.4" y1="307.34" x2="152.4" y2="124.46" width="0.1524" layer="91"/>
-<wire x1="152.4" y1="124.46" x2="95.25" y2="124.46" width="0.1524" layer="91"/>
+<wire x1="152.4" y1="104.14" x2="152.4" y2="124.46" width="0.1524" layer="91"/>
+<pinref part="U50" gate="P0.24-31" pin="P0.28"/>
+<wire x1="95.25" y1="96.52" x2="152.4" y2="96.52" width="0.1524" layer="91"/>
+<wire x1="152.4" y1="96.52" x2="152.4" y2="104.14" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="SENSOR1" class="0">
@@ -12556,11 +12533,47 @@ Connector</text>
 <wire x1="111.76" y1="182.88" x2="95.25" y2="182.88" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="SENSOR7" class="0">
+<net name="SENSOR3" class="0">
 <segment>
+<pinref part="U50" gate="P0.00-07" pin="P0.01"/>
+<wire x1="95.25" y1="180.34" x2="139.7" y2="180.34" width="0.1524" layer="91"/>
+<wire x1="139.7" y1="180.34" x2="139.7" y2="191.77" width="0.1524" layer="91"/>
+<pinref part="JP2" gate="A" pin="4"/>
+<wire x1="139.7" y1="191.77" x2="128.27" y2="191.77" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="SENSOR2" class="0">
+<segment>
+<pinref part="U50" gate="P0.00-07" pin="P0.02"/>
+<wire x1="95.25" y1="177.8" x2="113.03" y2="177.8" width="0.1524" layer="91"/>
+<wire x1="113.03" y1="177.8" x2="113.03" y2="191.77" width="0.1524" layer="91"/>
+<pinref part="JP2" gate="A" pin="3"/>
+<wire x1="113.03" y1="191.77" x2="120.65" y2="191.77" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="SENSOR5" class="0">
+<segment>
+<pinref part="JP2" gate="A" pin="6"/>
+<wire x1="128.27" y1="189.23" x2="138.43" y2="189.23" width="0.1524" layer="91"/>
+<wire x1="138.43" y1="189.23" x2="138.43" y2="175.26" width="0.1524" layer="91"/>
 <pinref part="U50" gate="P0.00-07" pin="P0.03"/>
-<wire x1="95.25" y1="175.26" x2="115.57" y2="175.26" width="0.1524" layer="91"/>
-<wire x1="115.57" y1="175.26" x2="115.57" y2="186.69" width="0.1524" layer="91"/>
+<wire x1="138.43" y1="175.26" x2="95.25" y2="175.26" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="SENSOR4" class="0">
+<segment>
+<pinref part="JP2" gate="A" pin="5"/>
+<wire x1="120.65" y1="189.23" x2="114.3" y2="189.23" width="0.1524" layer="91"/>
+<wire x1="114.3" y1="189.23" x2="114.3" y2="172.72" width="0.1524" layer="91"/>
+<pinref part="U50" gate="P0.00-07" pin="P0.04"/>
+<wire x1="114.3" y1="172.72" x2="95.25" y2="172.72" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="SENSOR6" class="0">
+<segment>
+<pinref part="U50" gate="P0.00-07" pin="P0.05"/>
+<wire x1="95.25" y1="170.18" x2="115.57" y2="170.18" width="0.1524" layer="91"/>
+<wire x1="115.57" y1="170.18" x2="115.57" y2="186.69" width="0.1524" layer="91"/>
 <pinref part="JP2" gate="A" pin="7"/>
 <wire x1="115.57" y1="186.69" x2="120.65" y2="186.69" width="0.1524" layer="91"/>
 </segment>
