@@ -12,7 +12,7 @@
 
 /** @file
  *
- * @defgroup ble_sdk_uart_over_ble_main main.c
+* @defgroup ble_sdk_uart_over_ble_main main.c
  * @{
  * @ingroup  ble_sdk_app_nus_eval
  * @brief    UART over BLE application main file.
@@ -39,6 +39,8 @@
 #include "ble_error_log.h"
 #include "ble_debug_assert_handler.h"
 #include "nrf_pwm.h"
+
+#define ADC_INPUT 1
 
 #define MOTOR_PWM_PIN1 9
 #define MOTOR_PWM_PIN2 12
@@ -131,6 +133,7 @@ void app_error_handler(uint32_t error_code, uint32_t line_num, const uint8_t * p
 }
 
 
+#if ADC_INPUT
 void adc_setup(void)
 {
   // P0.02 is AIN3
@@ -157,6 +160,103 @@ uint8_t adc_read(void)
   uint8_t rv = NRF_ADC->RESULT;
   return rv;
 }
+#else
+
+#define SPI_SCK              0
+#define SPI_MOSI             5
+#define SPI_MISO             4
+#define SPI_SS               2
+typedef enum
+{
+    Freq_125Kbps = 0,        /*!< drive SClk with frequency 125Kbps */
+    Freq_250Kbps,            /*!< drive SClk with frequency 250Kbps */
+    Freq_500Kbps,            /*!< drive SClk with frequency 500Kbps */
+    Freq_1Mbps,              /*!< drive SClk with frequency 1Mbps */
+    Freq_2Mbps,              /*!< drive SClk with frequency 2Mbps */
+    Freq_4Mbps,              /*!< drive SClk with frequency 4Mbps */
+    Freq_8Mbps               /*!< drive SClk with frequency 8Mbps */
+} SPIFrequency_t;
+
+
+
+
+// Use SPI0
+NRF_SPI_Type *spi_base_address =  NRF_SPI0;
+
+void spi_init(void)
+{
+  uint32_t config_mode;
+  nrf_gpio_cfg_output(SPI_SCK);
+  nrf_gpio_cfg_output(SPI_MOSI);
+  nrf_gpio_cfg_input(SPI_MISO, NRF_GPIO_PIN_NOPULL);
+  nrf_gpio_cfg_output(SPI_SS);
+
+  /* Configure pins, frequency and mode */
+  spi_base_address->PSELSCK  = SPI_SCK;
+  spi_base_address->PSELMOSI = SPI_MOSI;
+  spi_base_address->PSELMISO = SPI_MISO;
+  nrf_gpio_pin_set(SPI_SS); /* disable Set slave select (inactive high) */
+
+  spi_base_address->FREQUENCY = (uint32_t) ( 0x02000000UL << (uint32_t)Freq_1Mbps );
+
+  // MSB first, inactive clock low, sample on trailing edge, shift data in on rising edge
+  config_mode = (SPI_CONFIG_CPHA_Trailing << SPI_CONFIG_CPHA_Pos) | (SPI_CONFIG_CPOL_ActiveHigh << SPI_CONFIG_CPOL_Pos);
+  spi_base_address->CONFIG = (config_mode | (SPI_CONFIG_ORDER_MsbFirst << SPI_CONFIG_ORDER_Pos));
+
+  spi_base_address->EVENTS_READY = 0U;
+
+  /* Enable */
+  spi_base_address->ENABLE = (SPI_ENABLE_ENABLE_Enabled << SPI_ENABLE_ENABLE_Pos);
+
+}
+
+uint8_t spi_tx_rx(uint32_t count, const uint8_t *tx, uint8_t *rx) 
+{
+  uint16_t number_of_txd_bytes = 0;
+
+  // enable slave
+  nrf_gpio_pin_clear(SPI_SS);
+
+  while(number_of_txd_bytes < count)
+  {
+    spi_base_address->TXD = (uint32_t)(tx[number_of_txd_bytes]);
+
+    // wait for transaction complete
+    while (spi_base_address->EVENTS_READY == 0U)
+    {
+      continue;
+    }
+
+    spi_base_address->EVENTS_READY = 0U;
+
+    rx[number_of_txd_bytes] = (uint8_t)spi_base_address->RXD;
+    number_of_txd_bytes++;
+  };
+
+  // disable slave
+  nrf_gpio_pin_set(SPI_SS);
+
+  return true;
+}
+
+void encoder_setup(void) {
+  spi_init();
+
+}
+
+uint16_t read_encoder_position(void)
+{
+  uint8_t tx[2], rx[2];
+  tx[0] = 0;
+  tx[1] = 0;
+  if(!spi_tx_rx(2, (const uint8_t *)tx, rx)) {
+    return 0;
+  } else {
+    uint16_t pos = (rx[0] << 2) | (rx[1] >> 6);
+    return pos;
+  }
+}
+#endif
 
 void motor_update(float mdrive)
 {
@@ -406,6 +506,23 @@ static int strtoint_n(uint8_t* str, int n)
   }
 
   return sign * ret;
+}
+
+/* pos1 and pos2 in 0..1023
+ * return pos1 - pos2 modulo 1023 to 0 rollover
+ */
+static int angular_distance(uint16_t pos1, uint16_t pos2)
+{
+  uint16_t q1, q2;
+  q1 = pos1 >> 8;
+  q2 = pos2 >> 8;
+  if (q1 == 0 && q2 == 3) {
+    return (pos1+1024 - pos2);
+  } else if (q1 == 3 && q2 == 0) {
+    return -(pos2 + 1024 - pos1);
+  } else {
+    return pos1 - pos2;
+  }
 }
 
 /* static int strtoint(char* str) */
@@ -826,12 +943,16 @@ int main(void)
   // Initialize the PWM library
   // just reset right away
   nrf_pwm_init(&pwm_config);
-  set_motor_speed(1,100);
+  set_motor_speed(1,0);
 
   /* enable motor outputs */
   nrf_gpio_pin_set(MOTOR_ENABLEA_PIN);
   nrf_gpio_pin_set(MOTOR_ENABLEB_PIN);
+#ifdef ADC_INPUT
   adc_setup();
+#else
+  encoder_setup();
+#endif
 
   /* SPid pidstate = {0,0, 0,0, 0,0,0}; */
 
@@ -855,6 +976,7 @@ int main(void)
   advertising_start();
   // *very* crude proportional control loop
   while (1) {
+#ifdef ADC_INPUT
     uint8_t adcval = adc_read();
     servoctl.location = adcval;
     //float cmd = UpdatePID(&pidstate,pos-ftarget,pos);
@@ -865,6 +987,16 @@ int main(void)
     } else {
       set_motor_speed(-1, 2*(ftarget-adcval));
     }
+#else
+    uint16_t pos = read_encoder_position();
+    int dist = angular_distance(pos, ftarget);
+    /* dist = pos - ftarget; */
+    if (dist > 0) {
+      set_motor_speed(1,(dist));
+    } else {
+      set_motor_speed(-1, (-dist));
+    }
+#endif
     /* power_manage(); */
     nrf_delay_us(1000);
     /* counter++; */
@@ -872,6 +1004,11 @@ int main(void)
     /* if(counter >= 1000) */
     {
       ftarget = servoctl.target;
+      if (ftarget < 0) {
+        ftarget = 0;
+      } else if (ftarget > 1023) {
+        ftarget = 1023;
+      }
       /* i = (i+1)%2; */
       /* /1* ftarget = ts[i]; *1/ */
       /* counter = 0; */
