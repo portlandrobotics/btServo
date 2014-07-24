@@ -440,13 +440,13 @@ void nus_data_handler(ble_nus_t * p_nus, uint8_t * p_data, uint16_t length)
   int32_t raddr = -1;
   int32_t data = -1;
 
-  if(length >= 3)
+  if(length >= 4)
   {
       daddr = strtoint_hex(p_data,2);
-      raddr = strtoint_hex(p_data+2,1);
+      raddr = strtoint_hex(p_data+2,2);
       data = 0;
-      if(length >= 11)
-	  data = strtoint_hex(p_data+3,8);
+      if(length >= 12)
+	  data = strtoint_hex(p_data+4,8);
 
       if(daddr & 0x80)
       {
