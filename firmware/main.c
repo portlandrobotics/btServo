@@ -45,6 +45,26 @@
 #define MOTOR_ENABLEA_PIN 10
 #define MOTOR_ENABLEB_PIN 11
 
+
+struct {
+    int32_t target,
+	mode,
+	speed,
+#if 0
+	P,
+	I,
+	D,
+#endif
+	location,
+	pwm;
+} servoctl;
+
+#define SVCTL_TARGET   0
+#define SVCTL_MODE     1
+#define SVCTL_SPEED    2
+#define SVCTL_LOCATION 6
+#define SVCTL_PWM      7
+
 #define WAKEUP_BUTTON_PIN               BUTTON_0                                    /**< Button used to wake up the application. */
 
 #define ADVERTISING_LED_PIN_NO          LED_0                                       /**< LED to indicate advertising state. */
@@ -290,7 +310,7 @@ static void advertising_init(void)
   uint32_t      err_code;
   ble_advdata_t advdata;
   ble_advdata_t scanrsp;
-  uint8_t       flags = BLE_GAP_ADV_FLAGS_LE_ONLY_LIMITED_DISC_MODE;
+  uint8_t       flags = BLE_GAP_ADV_FLAGS_LE_ONLY_GENERAL_DISC_MODE;
 
   ble_uuid_t adv_uuids[] = {{BLE_UUID_NUS_SERVICE, m_nus.uuid_type}};
 
@@ -306,6 +326,61 @@ static void advertising_init(void)
 
   err_code = ble_advdata_set(&advdata, &scanrsp);
   APP_ERROR_CHECK(err_code);
+}
+
+
+int32_t strtoint_hex(uint8_t* str, int n)
+{
+    int sign = 1;
+    if (n > 0 && str[0] == '-')
+    {
+	sign = -1;
+	str += 1;
+	n -= 1;
+    }
+
+    int32_t rv=0;
+    int i;
+    int ofs =0;
+    for (i = n-1; i >= 0; i--)
+    {
+	int v = 0;
+	if (str[i] >= '0' && str[i] <= '9')
+	    v = str[i]-'0';
+	else if(str[i] >= 'A' && str[i] <= 'F')
+	    v = str[i]-'A'+10;
+	else if(str[i] >= 'a' && str[i] <= 'f')
+	    v = str[i]-'a'+10;
+	//else
+	//    v = -1;
+	rv |= v << ofs;
+	ofs += 4;
+    }
+    if (sign == 1)
+	return rv;
+    else
+	return -rv;
+}
+
+int inttostr_hex(uint32_t v, char * str, size_t len)
+{
+    uint32_t mask = 0xF0000000;
+    int shift=28;
+    char * b = str;
+    char * e = str+len;
+
+    while(mask && (b<e))
+    {
+	uint8_t t = (v & mask) >> shift;
+	if(t < 10)
+	    *b='0'+t;
+	else
+	    *b='A'+t-10;
+	b+=1;
+	shift -= 4;
+	mask = mask >> 4;
+    }
+    return 0;
 }
 
 static int strtoint_n(uint8_t* str, int n)
@@ -352,17 +427,83 @@ static int strtoint_n(uint8_t* str, int n)
  *           it to the UART module.
  */
 /**@snippet [Handling the data received over BLE] */
-volatile static int speed;
-volatile static int direction;
+//volatile static int speed;
+//volatile static int direction;
 void nus_data_handler(ble_nus_t * p_nus, uint8_t * p_data, uint16_t length)
 {
-  speed = strtoint_n(p_data, length);
-  /* direction = 1; */
-  /* if (speed < 0) { */
-  /*   speed = -speed; */
-  /*   direction = -1; */
-  /* } */
-  /* set_motor_speed(direction, speed); */
+  // parse incoming packet
+  // 2 bytes dev address, 1 byte reg addr, 8 bytes data
+
+  int status = 0;
+
+  int32_t daddr = -1;
+  int32_t raddr = -1;
+  int32_t data = -1;
+
+  if(length >= 3)
+  {
+      daddr = strtoint_hex(p_data,2);
+      raddr = strtoint_hex(p_data+2,1);
+      data = 0;
+      if(length >= 11)
+	  data = strtoint_hex(p_data+3,8);
+
+      if(daddr & 0x80)
+      {
+	  //write mode
+	  switch(raddr)
+	  {
+	  case SVCTL_TARGET:
+	      servoctl.target = data;
+	      break;
+	  case SVCTL_MODE:
+	      servoctl.mode = data;
+	      break;
+	  case SVCTL_SPEED:
+	      servoctl.speed = data;
+	      break;
+	  default:
+	      status = 1;
+	  }
+      }
+      else
+      {
+	  // read mode
+	  switch(raddr)
+	  {
+	  case SVCTL_TARGET:
+	      data = servoctl.target;
+	      break;
+	  case SVCTL_MODE:
+	      data = servoctl.mode;
+	      break;
+	  case SVCTL_SPEED:
+	      data = servoctl.speed;
+	      break;
+	  case SVCTL_LOCATION:
+	      data = servoctl.location;
+	      break;
+	  case SVCTL_PWM:
+	      data = servoctl.pwm;
+	      break;
+	  default:
+	      status = 1;
+	  }
+      }
+
+  }
+  else {
+      status = 1;
+  }
+
+  if(status)
+      ble_nus_send_string(p_nus,(uint8_t*)"FAIL",4);
+  else
+  {
+      char rv[8];
+      inttostr_hex(data,rv,sizeof(rv));
+      ble_nus_send_string(p_nus,(uint8_t*)rv,8);
+  }
 }
 
 /**@snippet [Handling the data received over BLE] */
@@ -468,7 +609,7 @@ static void advertising_start(void)
   adv_params.p_peer_addr = NULL;
   adv_params.fp          = BLE_GAP_ADV_FP_ANY;
   adv_params.interval    = APP_ADV_INTERVAL;
-  adv_params.timeout     = APP_ADV_TIMEOUT_IN_SECONDS;
+  adv_params.timeout     = 0;//APP_ADV_TIMEOUT_IN_SECONDS;
 
   err_code = sd_ble_gap_adv_start(&adv_params);
   APP_ERROR_CHECK(err_code);
@@ -701,12 +842,12 @@ int main(void)
   /* pidstate.iMax = 1/pidstate.iGain; */
   /* pidstate.iMin = -pidstate.iMax; */
 
-  int ts[] = {50, 150};
-  int i=0;
+  //int ts[] = {50, 150};
+  //int i=0;
 
 
   int ftarget = 100;
-  int counter = 0;
+  //int counter = 0;
 
   // the stop is at ~3.22v
   // vref is 1.2V, so top of range is 3.22V / 3 / 1.2 * 256 = 229
@@ -715,8 +856,10 @@ int main(void)
   // *very* crude proportional control loop
   while (1) {
     uint8_t adcval = adc_read();
+    servoctl.location = adcval;
     //float cmd = UpdatePID(&pidstate,pos-ftarget,pos);
     /* motor_update(pos-ftarget); */
+    servoctl.pwm = 2*(adcval-ftarget);
     if (adcval-ftarget>0) {
       set_motor_speed(1,2*(adcval-ftarget));
     } else {
@@ -725,10 +868,10 @@ int main(void)
     /* power_manage(); */
     nrf_delay_us(1000);
     /* counter++; */
-    if(speed != ftarget)
+    if(servoctl.target != ftarget)
     /* if(counter >= 1000) */
     {
-      ftarget = speed;
+      ftarget = servoctl.target;
       /* i = (i+1)%2; */
       /* /1* ftarget = ts[i]; *1/ */
       /* counter = 0; */
