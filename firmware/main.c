@@ -40,7 +40,7 @@
 #include "ble_debug_assert_handler.h"
 #include "nrf_pwm.h"
 
-#define ADC_INPUT 1
+//#define ADC_INPUT 1
 
 #define MOTOR_PWM_PIN1 9
 #define MOTOR_PWM_PIN2 12
@@ -162,10 +162,10 @@ uint8_t adc_read(void)
 }
 #else
 
-#define SPI_SCK              0
-#define SPI_MOSI             5
-#define SPI_MISO             4
-#define SPI_SS               2
+#define SPI_SCK              2
+#define SPI_MOSI             0
+#define SPI_MISO             1
+#define SPI_SS               3
 typedef enum
 {
     Freq_125Kbps = 0,        /*!< drive SClk with frequency 125Kbps */
@@ -193,11 +193,19 @@ void spi_init(void)
 
   /* Configure pins, frequency and mode */
   spi_base_address->PSELSCK  = SPI_SCK;
+#if SPI_THREE_WIRE_MODE
+  spi_base_address->PSELMOSI = 4;// an unused pin
+#else
   spi_base_address->PSELMOSI = SPI_MOSI;
+#endif
   spi_base_address->PSELMISO = SPI_MISO;
   nrf_gpio_pin_set(SPI_SS); /* disable Set slave select (inactive high) */
 
-  spi_base_address->FREQUENCY = (uint32_t) ( 0x02000000UL << (uint32_t)Freq_1Mbps );
+#if SPI_THREE_WIRE_MODE
+  nrf_gpio_pin_set(SPI_MOSI);
+#endif
+
+  spi_base_address->FREQUENCY = (uint32_t) ( 0x02000000UL << (uint32_t)Freq_125Kbps );
 
   // MSB first, inactive clock low, sample on trailing edge, shift data in on rising edge
   config_mode = (SPI_CONFIG_CPHA_Trailing << SPI_CONFIG_CPHA_Pos) | (SPI_CONFIG_CPOL_ActiveHigh << SPI_CONFIG_CPOL_Pos);
@@ -247,14 +255,13 @@ void encoder_setup(void) {
 uint16_t read_encoder_position(void)
 {
   uint8_t tx[2], rx[2];
-  tx[0] = 0;
-  tx[1] = 0;
-  if(!spi_tx_rx(2, (const uint8_t *)tx, rx)) {
-    return 0;
-  } else {
-    uint16_t pos = (rx[0] << 2) | (rx[1] >> 6);
-    return pos;
-  }
+  tx[0] = 0xff;
+  tx[1] = 0xff;
+  spi_tx_rx(2, (const uint8_t *)tx, rx);
+  spi_tx_rx(2, (const uint8_t *)tx, rx);
+
+  uint16_t pos = ((uint16_t)rx[2] << 8) | (rx[3]);
+  return pos;
 }
 #endif
 
@@ -989,6 +996,8 @@ int main(void)
     }
 #else
     uint16_t pos = read_encoder_position();
+    servoctl.location = pos;
+#if 1
     int dist = angular_distance(pos, ftarget);
     /* dist = pos - ftarget; */
     if (dist > 0) {
@@ -996,6 +1005,7 @@ int main(void)
     } else {
       set_motor_speed(-1, (-dist));
     }
+#endif
 #endif
     /* power_manage(); */
     nrf_delay_us(1000);
