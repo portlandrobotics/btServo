@@ -166,6 +166,15 @@ uint8_t adc_read(void)
 #define SPI_MOSI             0
 #define SPI_MISO             1
 #define SPI_SS               3
+
+#define AS5050_MASTER_RESET 0x33a5
+#define AS5050_ERROR_STATUS 0x335a
+#define AS5050_NOP          0x0000
+#define AS5050_ANGLE        0x3FFF
+
+int32_t as5050_write(uint16_t addr, uint16_t data);
+
+
 typedef enum
 {
     Freq_125Kbps = 0,        /*!< drive SClk with frequency 125Kbps */
@@ -249,18 +258,86 @@ uint8_t spi_tx_rx(uint32_t count, const uint8_t *tx, uint8_t *rx)
 
 void encoder_setup(void) {
   spi_init();
+  as5050_write(AS5050_MASTER_RESET,0);
 
+}
+
+uint16_t parity(uint16_t d) {
+  d ^= d >> 1;
+  d ^= d >> 2;
+  d ^= d >> 4;
+  d ^= d >> 8;
+  return d&1;
+}
+
+int8_t as5050_xfer(uint16_t send,uint16_t * rxd)
+{
+  uint8_t tx[2], rx[2];
+  tx[0] = send >> 8;
+  tx[1] = send & 0xff;
+  bool rv = spi_tx_rx(2, (const uint8_t *)tx, rx);
+  *rxd = (rx[0]<<8) | rx[1];
+  return rv;
+}
+
+int32_t as5050_read(uint16_t addr)
+{
+  uint16_t cmd = 0x8000 | (addr<<1);
+  cmd |= parity(cmd);
+  uint16_t rx;
+  uint32_t rsp = as5050_xfer(cmd,&rx);
+  if(!rsp)
+    return -1;
+  if(parity(cmd))
+    return -1;
+  return rx;
+}
+
+int32_t as5050_write(uint16_t addr, uint16_t data)
+{
+  uint16_t cmd = (addr << 1);
+  cmd |= parity(cmd);
+  uint16_t rx =0;
+  as5050_xfer(cmd,&rx);
+
+  cmd = (data<<2);
+  cmd |= parity(cmd);
+  uint16_t rx2 =0;
+  as5050_xfer(cmd,&rx2);
+
+  return rx;
 }
 
 uint16_t read_encoder_position(void)
 {
+#if 0
   uint8_t tx[2], rx[2];
   tx[0] = 0xff;
   tx[1] = 0xff;
   spi_tx_rx(2, (const uint8_t *)tx, rx);
   spi_tx_rx(2, (const uint8_t *)tx, rx);
+#endif
+  as5050_read(AS5050_ANGLE);
 
-  uint16_t pos = ((uint16_t)rx[2] << 8) | (rx[3]);
+  // wait 430us for conversion, we'll eventually want this to work differently
+  //   but for now I'm just trying to get it going
+  nrf_delay_us(430);
+
+  int32_t rx = as5050_write(AS5050_NOP,0);
+
+  if(parity(rx)) {
+    // parity error on response, probably should throw it out
+  }
+
+  if(rx & 0xC2) {
+    // we had an error of some sort, probably need to reboot
+    as5050_read(AS5050_ERROR_STATUS);
+    as5050_write(AS5050_NOP,0);
+
+    as5050_write(AS5050_MASTER_RESET,0);
+  }
+
+  uint16_t pos = rx & 0x3FF;
   return pos;
 }
 #endif
