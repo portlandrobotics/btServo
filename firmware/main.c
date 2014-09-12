@@ -329,7 +329,7 @@ uint16_t read_encoder_position(void)
     // parity error on response, probably should throw it out
   }
 
-  if(rx & 0xC2) {
+  if(rx & 0xC002) {
     // we had an error of some sort, probably need to reboot
     as5050_read(AS5050_ERROR_STATUS);
     as5050_write(AS5050_NOP,0);
