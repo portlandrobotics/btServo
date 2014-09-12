@@ -337,7 +337,7 @@ uint16_t read_encoder_position(void)
     as5050_write(AS5050_MASTER_RESET,0);
   }
 
-  uint16_t pos = rx & 0x3FF;
+  uint16_t pos = (rx>>2) & 0x3FF;
   return pos;
 }
 #endif
