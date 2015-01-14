@@ -1,36 +1,6 @@
 EESchema Schematic File Version 2
-LIBS:power
-LIBS:device
-LIBS:transistors
-LIBS:conn
-LIBS:linear
-LIBS:regul
-LIBS:74xx
-LIBS:cmos4000
-LIBS:adc-dac
-LIBS:memory
-LIBS:xilinx
-LIBS:special
-LIBS:microcontrollers
-LIBS:dsp
-LIBS:microchip
-LIBS:analog_switches
-LIBS:motorola
-LIBS:texas
-LIBS:intel
-LIBS:audio
-LIBS:interface
-LIBS:digital-audio
-LIBS:philips
-LIBS:display
-LIBS:cypress
-LIBS:siliconi
-LIBS:opto
-LIBS:atmel
-LIBS:contrib
-LIBS:valves
 LIBS:parts_servo
-LIBS:parts_servo2_kicad-cache
+LIBS:parts_servo-cache
 EELAYER 25 0
 EELAYER END
 $Descr B 17000 11000
@@ -323,12 +293,12 @@ $EndComp
 $Comp
 L C C204
 U 1 1 54A0ED45
-P 7000 3550
-F 0 "C204" H 7050 3650 50  0000 L CNN
-F 1 "4u7" H 7050 3450 50  0000 L CNN
-F 2 "parts_servo:0402-B" H 7000 3550 60  0001 C CNN
-F 3 "" H 7000 3550 60  0000 C CNN
-	1    7000 3550
+P 7200 3800
+F 0 "C204" H 7250 3900 50  0000 L CNN
+F 1 "4u7" H 7250 3700 50  0000 L CNN
+F 2 "parts_servo:0402-B" H 7200 3800 60  0001 C CNN
+F 3 "" H 7200 3800 60  0000 C CNN
+	1    7200 3800
 	-1   0    0    1   
 $EndComp
 $Comp
@@ -466,12 +436,12 @@ $EndComp
 $Comp
 L R-US R201
 U 1 1 54A0FED1
-P 7000 3100
-F 0 "R201" V 7150 3100 50  0000 C CNN
-F 1 "15" V 6900 3100 50  0000 C CNN
-F 2 "parts_servo:0402-B" H 7000 3100 60  0001 C CNN
-F 3 "" H 7000 3100 60  0000 C CNN
-	1    7000 3100
+P 7200 3100
+F 0 "R201" V 7350 3100 50  0000 C CNN
+F 1 "15" V 7100 3100 50  0000 C CNN
+F 2 "parts_servo:0402-B" H 7200 3100 60  0001 C CNN
+F 3 "" H 7200 3100 60  0000 C CNN
+	1    7200 3100
 	-1   0    0    1   
 $EndComp
 $Comp
@@ -777,12 +747,7 @@ Wire Wire Line
 Wire Wire Line
 	4450 2650 4450 2850
 Wire Wire Line
-	4450 2850 7000 2850
-Wire Wire Line
-	6300 3500 6300 2550
-Connection ~ 6300 2850
-Wire Wire Line
-	5900 3350 7000 3350
+	4450 2850 7200 2850
 Wire Wire Line
 	5900 3950 6300 3950
 Wire Wire Line
@@ -791,18 +756,12 @@ Connection ~ 6300 4100
 Wire Wire Line
 	5900 3650 6300 3650
 Connection ~ 6300 3950
-Connection ~ 6300 3500
 Wire Wire Line
-	5900 3500 6650 3500
+	5900 3500 7200 3500
 Wire Wire Line
-	7000 4100 7000 3750
-Wire Wire Line
-	5900 4100 7000 4100
+	5900 4100 7200 4100
 Wire Wire Line
 	5900 3800 6150 3800
-Wire Wire Line
-	6150 3800 6150 3500
-Connection ~ 6150 3500
 Wire Wire Line
 	3650 4750 5000 4750
 Wire Wire Line
@@ -1014,7 +973,7 @@ Wire Wire Line
 Wire Wire Line
 	2950 1500 2700 1500
 Wire Wire Line
-	2200 1500 1700 1500
+	1700 1500 2200 1500
 Wire Wire Line
 	1700 1600 1700 1800
 Wire Wire Line
@@ -1144,7 +1103,7 @@ Connection ~ 15150 1500
 Wire Wire Line
 	14050 2100 15150 2100
 Wire Wire Line
-	14300 2400 14050 2400
+	14050 2400 14300 2400
 Wire Wire Line
 	14200 2550 14200 2400
 Connection ~ 14200 2400
@@ -1225,8 +1184,20 @@ Wire Wire Line
 	5400 1450 5400 1400
 Connection ~ 5400 1400
 Wire Wire Line
-	6650 3500 6650 3600
+	5900 3350 6650 3350
 Wire Wire Line
-	6650 4000 6650 4100
+	6650 2850 6650 3600
+Wire Wire Line
+	6650 4100 6650 4000
+Connection ~ 6650 3350
+Wire Wire Line
+	7200 3350 7200 3600
+Connection ~ 7200 3500
+Connection ~ 6650 2850
+Wire Wire Line
+	7200 4100 7200 4000
 Connection ~ 6650 4100
+Wire Wire Line
+	6150 3800 6150 3350
+Connection ~ 6150 3350
 $EndSCHEMATC
