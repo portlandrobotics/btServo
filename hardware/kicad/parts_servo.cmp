@@ -1,332 +1,379 @@
-Cmp-Mod V01 Created by Cvpcb (2014-12-16 BZR 5324)-product   date = Sunday, January 04, 2015 'PMt' 04:20:15 PM
+Cmp-Mod V01 Genere par PcbNew le Wednesday, March 04, 2015 'PMt' 10:47:03 PM
 
 BeginCmp
-TimeStamp = /54A11381;
-Reference = C1;
-ValeurCmp = 1uF 10V;
-IdModule  = parts_servo:0402-B;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A113D3;
-Reference = C2;
-ValeurCmp = 1uF;
-IdModule  = parts_servo:0402-B;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A11662;
-Reference = C20;
-ValeurCmp = 0.1uF;
-IdModule  = parts_servo:0402-B;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A114AF;
-Reference = C50;
-ValeurCmp = 0.1uF;
-IdModule  = parts_servo:0402-B;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A1166A;
-Reference = C51;
-ValeurCmp = 0.1uF;
-IdModule  = parts_servo:0402-B;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A116BE;
-Reference = C52;
-ValeurCmp = 0.001uF;
-IdModule  = parts_servo:0402-B;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A1178A;
-Reference = C53;
-ValeurCmp = 0.1uF;
-IdModule  = parts_servo:0402-B;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A11728;
-Reference = C54;
-ValeurCmp = 0.047uF;
-IdModule  = parts_servo:0402-B;
-EndCmp
-
-BeginCmp
-TimeStamp = /549FA5B5;
-Reference = C60;
-ValeurCmp = 8pF;
-IdModule  = parts_servo:0402-B;
-EndCmp
-
-BeginCmp
-TimeStamp = /549FA5FA;
-Reference = C61;
-ValeurCmp = 8pF;
-IdModule  = parts_servo:0402-B;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A41A43;
-Reference = C70;
-ValeurCmp = 0.0022uF;
-IdModule  = parts_servo:0402-B;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A41CF7;
-Reference = C71;
-ValeurCmp = np;
-IdModule  = parts_servo:0402-B;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A419BC;
-Reference = C72;
-ValeurCmp = 2,2pF;
-IdModule  = parts_servo:0402-B;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A11D8F;
-Reference = C100;
-ValeurCmp = 10uF 10V;
-IdModule  = parts_servo:0805-B;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A11D20;
-Reference = C101;
-ValeurCmp = 10uF 10V;
-IdModule  = parts_servo:0805-B;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A1457C;
-Reference = C102;
-ValeurCmp = 1uF;
-IdModule  = parts_servo:0402-B;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A1874B;
-Reference = C110;
-ValeurCmp = 1uF;
-IdModule  = parts_servo:0402-B;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A15540;
-Reference = C120;
-ValeurCmp = 1uF;
-IdModule  = parts_servo:0402-B;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A0EAB2;
-Reference = C203;
-ValeurCmp = 0.1uF;
-IdModule  = parts_servo:0402-B;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A0ED45;
-Reference = C204;
-ValeurCmp = 4u7;
-IdModule  = parts_servo:0402-B;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A46646;
-Reference = JP1;
-ValeurCmp = M01;
-IdModule  = parts_servo:SMDMOTOR;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A10CE8;
-Reference = JP2;
-ValeurCmp = Input;
-IdModule  = parts_servo:SMD_1X4_HEADER;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A46F22;
-Reference = JP3;
-ValeurCmp = M01;
-IdModule  = parts_servo:SMDMOTOR;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A0DD02;
-Reference = JP4;
-ValeurCmp = SWD;
-IdModule  = parts_servo:SMD_1X3_PADS;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A0E036;
-Reference = JP5;
-ValeurCmp = POT;
-IdModule  = parts_servo:SMD_1X3_PADS;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A41AF0;
-Reference = L70;
-ValeurCmp = 10nH;
-IdModule  = parts_servo:0402-B;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A41B94;
-Reference = L71;
-ValeurCmp = 4.7nH;
-IdModule  = parts_servo:0402-B;
-EndCmp
-
-BeginCmp
-TimeStamp = /549F3E90;
-Reference = Q110;
-ValeurCmp = NFET-DUAL;
-IdModule  = parts_servo:PMDPB28UN;
-EndCmp
-
-BeginCmp
-TimeStamp = /549F38E5;
-Reference = Q120;
-ValeurCmp = NFET-DUAL;
-IdModule  = parts_servo:PMDPB28UN;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A1B636;
-Reference = R20;
-ValeurCmp = 120 (np);
-IdModule  = parts_servo:0402-B;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A1A87D;
-Reference = R21;
-ValeurCmp = 4.7K (np);
-IdModule  = parts_servo:0402-B;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A1A7F6;
-Reference = R22;
-ValeurCmp = 4.7K (np);
-IdModule  = parts_servo:0402-B;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A13269;
-Reference = R102;
-ValeurCmp = 2.2;
-IdModule  = parts_servo:0402-B;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A1698B;
-Reference = R110;
-ValeurCmp = 1;
-IdModule  = parts_servo:0402-B;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A169F7;
-Reference = R111;
-ValeurCmp = 2.2;
-IdModule  = parts_servo:0402-B;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A16B00;
-Reference = R112;
-ValeurCmp = 2.2;
-IdModule  = parts_servo:0402-B;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A15450;
-Reference = R120;
-ValeurCmp = 1;
-IdModule  = parts_servo:0402-B;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A15B91;
-Reference = R121;
-ValeurCmp = 2.2;
-IdModule  = parts_servo:0402-B;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A15C1C;
-Reference = R122;
-ValeurCmp = 2.2;
-IdModule  = parts_servo:0402-B;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A0FED1;
-Reference = R201;
-ValeurCmp = 15;
-IdModule  = parts_servo:0402-B;
-EndCmp
-
-BeginCmp
-TimeStamp = /54A4B88C;
+TimeStamp = 54A9D8DC
+Path = /54A4B88C
 Reference = TP1;
 ValeurCmp = ANT1;
 IdModule  = parts_servo:TESTPOINT-(1X1)CREAMED;
 EndCmp
 
 BeginCmp
-TimeStamp = /54A4B804;
+TimeStamp = 54A9D9D7
+Path = /54A46646
+Reference = JP1;
+ValeurCmp = M01;
+IdModule  = parts_servo:SMDMOTOR;
+EndCmp
+
+BeginCmp
+TimeStamp = 54BC3F3C
+Path = /54A46F22
+Reference = JP3;
+ValeurCmp = M01;
+IdModule  = parts_servo:SMDMOTOR;
+EndCmp
+
+BeginCmp
+TimeStamp = 53C5A114
+Path = /54A0DD02
+Reference = JP4;
+ValeurCmp = SWD;
+IdModule  = parts_servo:SMD_1X3_PADS;
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D80C
+Path = /54A11381
+Reference = C1;
+ValeurCmp = 1uF 10V;
+IdModule  = parts_servo:0402-B;
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D811
+Path = /54A113D3
+Reference = C2;
+ValeurCmp = 1uF;
+IdModule  = parts_servo:0402-B;
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D816
+Path = /54A11662
+Reference = C20;
+ValeurCmp = 0.1uF;
+IdModule  = parts_servo:0402-B;
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D81B
+Path = /54A114AF
+Reference = C50;
+ValeurCmp = 0.1uF;
+IdModule  = parts_servo:0402-B;
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D820
+Path = /54A1166A
+Reference = C51;
+ValeurCmp = 0.1uF;
+IdModule  = parts_servo:0402-B;
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D825
+Path = /54A116BE
+Reference = C52;
+ValeurCmp = 0.001uF;
+IdModule  = parts_servo:0402-B;
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D82A
+Path = /54A1178A
+Reference = C53;
+ValeurCmp = 0.1uF;
+IdModule  = parts_servo:0402-B;
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D82F
+Path = /54A11728
+Reference = C54;
+ValeurCmp = 0.047uF;
+IdModule  = parts_servo:0402-B;
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D834
+Path = /549FA5B5
+Reference = C60;
+ValeurCmp = 8pF;
+IdModule  = parts_servo:0402-B;
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D839
+Path = /549FA5FA
+Reference = C61;
+ValeurCmp = 8pF;
+IdModule  = parts_servo:0402-B;
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D83E
+Path = /54A41A43
+Reference = C70;
+ValeurCmp = 0.0022uF;
+IdModule  = parts_servo:0402-B;
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D843
+Path = /54A41CF7
+Reference = C71;
+ValeurCmp = np;
+IdModule  = parts_servo:0402-B;
+EndCmp
+
+BeginCmp
+TimeStamp = 54CC5217
+Path = /54A419BC
+Reference = C72;
+ValeurCmp = 2,2pF;
+IdModule  = parts_servo:0402-B;
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D84D
+Path = /54A11D8F
+Reference = C100;
+ValeurCmp = 10uF 10V;
+IdModule  = parts_servo:0805-B;
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D852
+Path = /54A11D20
+Reference = C101;
+ValeurCmp = 10uF 10V;
+IdModule  = parts_servo:0805-B;
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D857
+Path = /54A1457C
+Reference = C102;
+ValeurCmp = 1uF;
+IdModule  = parts_servo:0402-B;
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D85C
+Path = /54A1874B
+Reference = C110;
+ValeurCmp = 1uF;
+IdModule  = parts_servo:0402-B;
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D861
+Path = /54A15540
+Reference = C120;
+ValeurCmp = 1uF;
+IdModule  = parts_servo:0402-B;
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D874
+Path = /54A10CE8
+Reference = JP2;
+ValeurCmp = Input;
+IdModule  = parts_servo:SMD_1X4_HEADER;
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D87F
+Path = /54A0E036
+Reference = JP5;
+ValeurCmp = POT;
+IdModule  = parts_servo:SMD_1X3_PADS;
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D885
+Path = /54A41AF0
+Reference = L70;
+ValeurCmp = 10nH;
+IdModule  = parts_servo:0402-B;
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D88A
+Path = /54A41B94
+Reference = L71;
+ValeurCmp = 4.7nH;
+IdModule  = parts_servo:0402-B;
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D8A5
+Path = /54A1B636
+Reference = R20;
+ValeurCmp = 120 (np);
+IdModule  = parts_servo:0402-B;
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D8AA
+Path = /54A1A87D
+Reference = R21;
+ValeurCmp = 4.7K (np);
+IdModule  = parts_servo:0402-B;
+EndCmp
+
+BeginCmp
+TimeStamp = 54C0B0AE
+Path = /54A1A7F6
+Reference = R22;
+ValeurCmp = 4.7K (np);
+IdModule  = parts_servo:0402-B;
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D8B4
+Path = /54A13269
+Reference = R102;
+ValeurCmp = 2.2;
+IdModule  = parts_servo:0402-B;
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D8B9
+Path = /54A1698B
+Reference = R110;
+ValeurCmp = 1;
+IdModule  = parts_servo:0402-B;
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D8BE
+Path = /54A169F7
+Reference = R111;
+ValeurCmp = 2.2;
+IdModule  = parts_servo:0402-B;
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D8C3
+Path = /54A16B00
+Reference = R112;
+ValeurCmp = 2.2;
+IdModule  = parts_servo:0402-B;
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D8C8
+Path = /54A15450
+Reference = R120;
+ValeurCmp = 1;
+IdModule  = parts_servo:0402-B;
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D8CD
+Path = /54A15B91
+Reference = R121;
+ValeurCmp = 2.2;
+IdModule  = parts_servo:0402-B;
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D8D2
+Path = /54A15C1C
+Reference = R122;
+ValeurCmp = 2.2;
+IdModule  = parts_servo:0402-B;
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D8E0
+Path = /54A4B804
 Reference = TP2;
 ValeurCmp = ANT_FEED;
 IdModule  = parts_servo:TESTPOINT-(1X1)CREAMED;
 EndCmp
 
 BeginCmp
-TimeStamp = /549F0506;
+TimeStamp = 54B2E8DB
+Path = /54A0CFAF
+Reference = X60;
+ValeurCmp = 16MHz;
+IdModule  = parts_servo:CRYSTAL-3.2X2.5(4_TERMINAL);
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D88F
+Path = /549F3E90
+Reference = Q110;
+ValeurCmp = NFET-DUAL;
+IdModule  = parts_servo:PMDPB28UN;
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D89A
+Path = /549F38E5
+Reference = Q120;
+ValeurCmp = NFET-DUAL;
+IdModule  = parts_servo:PMDPB28UN;
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D8E4
+Path = /549F0506
 Reference = U1;
 ValeurCmp = MCP1703-3302;
 IdModule  = parts_servo:MCP1703;
 EndCmp
 
 BeginCmp
-TimeStamp = /549E16BE;
+TimeStamp = 54A9E136
+Path = /549E16BE
 Reference = U50;
 ValeurCmp = NRF51822;
 IdModule  = parts_servo:NRF51822;
 EndCmp
 
 BeginCmp
-TimeStamp = /544C93C5;
+TimeStamp = 54A9D904
+Path = /544C93C5
 Reference = U100;
 ValeurCmp = RT9625A;
 IdModule  = parts_servo:QFN-16(4X4)+EP;
 EndCmp
 
 BeginCmp
-TimeStamp = /549F877D;
+TimeStamp = 54EFF0F9
+Path = /549F877D
 Reference = U200;
 ValeurCmp = AS5050;
-IdModule  = parts_servo:AS5550;
+IdModule  = parts_servo:AS5050;
 EndCmp
 
 BeginCmp
-TimeStamp = /54A0CFAF;
-Reference = X60;
-ValeurCmp = 16MHz;
-IdModule  = parts_servo:CRYSTAL-3.2X2.5(4_TERMINAL);
+TimeStamp = 54A9D866
+Path = /54A0EAB2
+Reference = C203;
+ValeurCmp = 0.1uF;
+IdModule  = Capacitors_SMD:C_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D8D7
+Path = /54A0FED1
+Reference = R201;
+ValeurCmp = 15;
+IdModule  = Capacitors_SMD:C_0603;
+EndCmp
+
+BeginCmp
+TimeStamp = 54A9D86B
+Path = /54A0ED45
+Reference = C204;
+ValeurCmp = 4u7;
+IdModule  = Capacitors_SMD:C_0603;
 EndCmp
 
 EndListe
