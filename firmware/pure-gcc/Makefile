@@ -1,18 +1,33 @@
 # List all source files the application uses.
-APPLICATION_SRCS = $(notdir $(wildcard ../*.c))  nrf_delay.c
-# Use shell to find name of root folder. Possible but horrible to do in make.
+APPLICATION_SRCS = $(notdir $(wildcard ../*.c))
+APPLICATION_SRCS += app_gpiote.c
+# APPLICATION_SRCS += app_button.c
+APPLICATION_SRCS += app_timer.c
+APPLICATION_SRCS += ble_advdata.c
+APPLICATION_SRCS += ble_conn_params.c
+APPLICATION_SRCS += pstorage.c
+APPLICATION_SRCS += ble_bondmngr.c
+APPLICATION_SRCS += ble_bas.c
+APPLICATION_SRCS += ble_dis.c
+APPLICATION_SRCS += ble_hrs.c
+APPLICATION_SRCS += ble_srv_common.c
+APPLICATION_SRCS += crc16.c
+APPLICATION_SRCS += softdevice_handler.c
+
 PROJECT_NAME = $(shell basename "$(realpath ../)")
 
 DEVICE = NRF51
-BOARD = BOARD_BTSERVO
+BOARD = NRF_BREAKOUT
 #SEGGER_SERIAL =
 
-#USE_SOFTDEVICE = s110
+USE_SOFTDEVICE = s110
+SOFTDEVICE = ../../../s110_nrf51822_6.0.0/s110_nrf51822_6.0.0_softdevice.hex
 
-SDK_PATH = $(HOME)/src/NRF/nrf51822/
-TEMPLATE_PATH = $(HOME)/src/NRF//nrf51-pure-gcc-setup/template/
+SDK_PATH = ../../../nrf51822/
+TEMPLATE_PATH = ../../../nrf51-pure-gcc-setup/template/
 
-CFLAGS = -Os
+CFLAGS = -O0 -ggdb 
+#CFLAGS = -Os
 
 GDB_PORT_NUMBER = 3333
 
