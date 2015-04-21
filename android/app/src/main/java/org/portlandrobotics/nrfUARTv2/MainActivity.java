@@ -58,10 +58,12 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioGroup;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -92,6 +94,7 @@ public class MainActivity extends Activity implements RadioGroup.OnCheckedChange
     private Button btnConnectDisconnect,btnSend,btnRotateNinety;
     private EditText edtMessage;
     private ServoWheelView mSwv;
+    private Switch motorSwitch;
 
     private final Charset uartCharset;
 
@@ -139,6 +142,7 @@ public class MainActivity extends Activity implements RadioGroup.OnCheckedChange
         btnRotateNinety = (Button) findViewById(R.id.rotateNinetyButton);
         edtMessage = (EditText) findViewById(R.id.sendText);
         mSwv = (ServoWheelView) findViewById(R.id.view);
+        motorSwitch = (Switch) findViewById(R.id.switch1);
         service_init();
 
         mSwv.setAngleUpdate(new MyAngle());
@@ -204,6 +208,17 @@ public class MainActivity extends Activity implements RadioGroup.OnCheckedChange
                 writeRegister(0,mServoState.target);
             }
         });
+
+        motorSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)
+                    writeRegister(1,1);
+                else
+                    writeRegister(1,0);
+            }
+        });
      
         // Set initial UI state
         
@@ -242,16 +257,16 @@ public class MainActivity extends Activity implements RadioGroup.OnCheckedChange
         }
         else {
             mCommandQueue.remove();
-            log(c.command + " -> " + text);
-            if(c.command.length()==4) {
-                int ci = Integer.parseInt(c.command,16);
-                int rv = Integer.parseInt(text,16);
-                log(String.format("debug %d %d %d",ci>>8,ci&0xff,rv));
-                if(ci==BTSERVO_REG_LOCATION) {
-                    Log.v("Draw",String.format("%d %f",rv,rv/1024.*2*Math.PI));
-                    mSwv.setAngle(rv/1024.*2*Math.PI);
-                }
-
+            long dt = new Date().getTime()-c.timeout.getTime()+1000;
+            log(c.command + " -> " + text + " (" + dt + ")");
+            int ci = Integer.parseInt(c.command.substring(0,4),16);
+            int cmdBack = Integer.parseInt(text.substring(0,4),16);
+            int dataBack = Integer.parseInt(text.substring(4),16);
+            if(ci != cmdBack)
+                log(String.format("debug %x %x %d",ci,cmdBack,dataBack));
+            if(cmdBack==BTSERVO_REG_LOCATION) {
+                Log.v("Draw",String.format("%d %f",dataBack,dataBack/1024.*2*Math.PI));
+                mSwv.setAngle(dataBack/1024.*2*Math.PI);
             }
         }
 
@@ -267,7 +282,8 @@ public class MainActivity extends Activity implements RadioGroup.OnCheckedChange
                 break;
             Command c = e.next();
             if(!c.sent) {
-                log("TX: " + c.command);
+                if(!c.command.equals("0006"))
+                    log("TX: " + c.command);
                 mService.writeRXCharacteristic(c.command.getBytes(uartCharset));
                 c.sent=true;
                 c.timeout = new Date(new Date().getTime()+1000);

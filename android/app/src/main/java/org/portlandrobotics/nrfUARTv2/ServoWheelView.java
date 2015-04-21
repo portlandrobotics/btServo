@@ -24,7 +24,12 @@ public class ServoWheelView extends View {
 
     private Path p;
 
+    private ShapeDrawable mDrawableTargetArrow;
+
+    private Path tp;
+
     double mAngle=0;
+    double mTarget=0;
 
     public ServoWheelView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -52,11 +57,13 @@ public class ServoWheelView extends View {
 
         mDrawable.setBounds(x, y, x + width, y + height);
 
+        if(isInEditMode())
+            return;
+
         p = new Path();
         p.moveTo(50,50);
         p.lineTo(0,50);
         p.close();
-
         PathShape ps = new PathShape(p,100,100);
         mDrawableArrow = new ShapeDrawable(ps);
         mDrawableArrow.setBounds(x, y, x + width, y + height);
@@ -65,6 +72,21 @@ public class ServoWheelView extends View {
         paint.setColor(0xffff0000);
         paint.setStrokeWidth(3);
         paint.setStyle(Paint.Style.STROKE);
+
+        // target arrow
+        tp = new Path();
+        tp.moveTo(50,50);
+        tp.lineTo(0,50);
+        tp.close();
+        PathShape tps = new PathShape(tp,100,100);
+        mDrawableTargetArrow = new ShapeDrawable(tps);
+        mDrawableTargetArrow.setBounds(x, y, x + width, y + height);
+
+        Paint tpaint = mDrawableTargetArrow.getPaint();
+        tpaint.setColor(0xff0000ff);
+        tpaint.setStrokeWidth(3);
+        tpaint.setStyle(Paint.Style.STROKE);
+
 
         //mDrawableArrow.getPaint()
         //setEnabled(true);
@@ -93,6 +115,7 @@ public class ServoWheelView extends View {
             if( 10 < x && x < 310 && 10 < y && y < 300)
             {
                 mAu.OnAngleUpdate(Math.atan2(x-160,y-160));
+                mTarget=Math.atan2(x-160,y-160);
 
                 return true;
             }
@@ -110,6 +133,13 @@ public class ServoWheelView extends View {
 
     }
 
+    public void setTarget(double theta) {
+        if(theta != mTarget) {
+            mTarget = theta;
+            postInvalidate();
+        }
+    }
+
 
 
     protected void onDraw(Canvas canvas) {
@@ -121,6 +151,17 @@ public class ServoWheelView extends View {
 
         p.lineTo((float)(50+50*Math.sin(m)),(float)(50+50*Math.cos(m)));
         mDrawableArrow.draw(canvas);
+
+        tp.rewind();
+        tp.moveTo(50,50);
+        tp.lineTo((float)(50+50*Math.sin(mTarget)),(float)(50+50*Math.cos(mTarget)));
+        mDrawableTargetArrow.draw(canvas);
+        Paint p = new Paint();
+        p.setStrokeWidth(3);
+        p.setARGB(0xff,0,0,0xff);
+        p.setStyle(Paint.Style.STROKE);
+        //canvas.drawPath(tp,p);
+        //canvas.drawLine(25,25,75,75,p);
     }
 
 }
