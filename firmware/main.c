@@ -67,6 +67,11 @@ struct {
 #define SVCTL_LOCATION 6
 #define SVCTL_PWM      7
 
+#define SVCTL_MODE_OFF       0
+#define SVCTL_MODE_POSITION  1
+#define SVCTL_MODE_SPEED     2
+#define SVCTL_MODE_MULTITURN 3
+
 #define WAKEUP_BUTTON_PIN               BUTTON_0                                    /**< Button used to wake up the application. */
 
 #define ADVERTISING_LED_PIN_NO          LED_0                                       /**< LED to indicate advertising state. */
@@ -597,6 +602,7 @@ static int strtoint_n(uint8_t* str, int n)
  */
 static int angular_distance(uint16_t pos1, uint16_t pos2)
 {
+#if 0
   uint16_t q1, q2;
   q1 = pos1 >> 8;
   q2 = pos2 >> 8;
@@ -607,6 +613,14 @@ static int angular_distance(uint16_t pos1, uint16_t pos2)
   } else {
     return pos1 - pos2;
   }
+#else
+  int16_t da = pos1 - pos2;
+  if(da < -511)
+      da += 1024;
+  if(da > 512)
+      da = da -1024;
+  return da;
+#endif
 }
 
 /* static int strtoint(char* str) */
@@ -633,7 +647,7 @@ static int angular_distance(uint16_t pos1, uint16_t pos2)
 void nus_data_handler(ble_nus_t * p_nus, uint8_t * p_data, uint16_t length)
 {
   // parse incoming packet
-  // 2 bytes dev address, 1 byte reg addr, 8 bytes data
+  // 2 bytes dev address, 2 byte reg addr, 8 bytes data
 
   int status = 0;
 
@@ -701,9 +715,10 @@ void nus_data_handler(ble_nus_t * p_nus, uint8_t * p_data, uint16_t length)
       ble_nus_send_string(p_nus,(uint8_t*)"FAIL",4);
   else
   {
-      char rv[8];
-      inttostr_hex(data,rv,sizeof(rv));
-      ble_nus_send_string(p_nus,(uint8_t*)rv,8);
+      char rv[12];
+      memcpy(rv,p_data,4);
+      inttostr_hex(data,rv+4,sizeof(rv)-4);
+      ble_nus_send_string(p_nus,(uint8_t*)rv,sizeof(rv));
   }
 }
 
@@ -1051,7 +1066,7 @@ int main(void)
   //int i=0;
 
 
-  int ftarget = 100;
+  //int ftarget = 100;
   //int counter = 0;
 
   // the stop is at ~3.22v
@@ -1063,46 +1078,45 @@ int main(void)
 #ifdef ADC_INPUT
     uint8_t adcval = adc_read();
     servoctl.location = adcval;
-    //float cmd = UpdatePID(&pidstate,pos-ftarget,pos);
-    /* motor_update(pos-ftarget); */
-    servoctl.pwm = 2*(adcval-ftarget);
-    if (adcval-ftarget>0) {
-      set_motor_speed(1,2*(adcval-ftarget));
-    } else {
-      set_motor_speed(-1, 2*(ftarget-adcval));
-    }
+    Im pretty sure this is broken, so let this serve as a "fixme"
 #else
     uint16_t pos = read_encoder_position();
     servoctl.location = pos;
-#if 1
-    int dist = angular_distance(pos, ftarget);
-    /* dist = pos - ftarget; */
-    if (dist > 0) {
-      set_motor_speed(1,(dist));
-    } else {
-      set_motor_speed(-1, (-dist));
-    }
 #endif
-#endif
+
+    // what's this?
     /* power_manage(); */
-    nrf_delay_us(1000);
-    /* counter++; */
-    if(servoctl.target != ftarget)
-    /* if(counter >= 1000) */
-    {
-      ftarget = servoctl.target;
-      if (ftarget < 0) {
-        ftarget = 0;
-      } else if (ftarget > 1023) {
-        ftarget = 1023;
-      }
+
+    if(servoctl.mode == SVCTL_MODE_OFF) {
+	set_motor_speed(1,0);
+    }
+    else if(servoctl.mode == SVCTL_MODE_POSITION) {
+
+	int32_t ftarget = servoctl.target;
+	if (ftarget < 0) {
+	    ftarget = 0;
+	} else if (ftarget > 1023) {
+	    ftarget = 1023;
+	}
+
+	int dist = angular_distance(pos, ftarget);
+	/* dist = pos - ftarget; */
+	if (dist > 0) {
+	    set_motor_speed(1,(dist));
+	} else {
+	    set_motor_speed(-1, (-dist));
+	}
+    }
+
+
       /* i = (i+1)%2; */
       /* /1* ftarget = ts[i]; *1/ */
       /* counter = 0; */
 
       /* pidstate.iState=0; */
       /* pidstate.dState=pos; */
-    }
+
+    nrf_delay_us(1000);
   }
 
 
