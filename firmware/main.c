@@ -448,7 +448,7 @@ static void set_motor_speed(int direction, int speed)
   } else if (speed > 100) {
     speed = 100;
   }
-  if (direction > 0) {
+  if (direction < 0) {
     nrf_pwm_set_value(0, speed);
     nrf_pwm_set_value(1, 0);
   } else {
