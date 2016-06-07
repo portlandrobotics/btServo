@@ -1,9 +1,10 @@
-(module 0805-B (layer F.Cu) (tedit 53C59C65)
+(module 0805-B (layer F.Cu) (tedit 54AA10E0)
   (descr "<b>0805 (metric 2012) normal 'IPC-B'</b> <br>In house package for nominal spacing based on IPC-7351A. Cross-checked against other packages.")
-  (fp_text reference C100 (at -0.6 1.4) (layer F.SilkS)
+  (attr smd)
+  (fp_text reference C100 (at -0.342331 1.505319) (layer F.SilkS)
     (effects (font (size 0.38608 0.38608) (thickness 0.077216)) (justify left bottom))
   )
-  (fp_text value 10 (at -0.8 2) (layer F.SilkS)
+  (fp_text value "10uF 10V" (at -0.8 2) (layer F.SilkS) hide
     (effects (font (size 0.95 0.95) (thickness 0.095)) (justify left bottom))
   )
   (fp_line (start -0.25 -0.625) (end -0.25 0.625) (layer Dwgs.User) (width 0.01))

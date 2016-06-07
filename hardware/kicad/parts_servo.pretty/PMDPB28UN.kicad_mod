@@ -1,5 +1,6 @@
-(module "DFN-6(2X2)+2EP(TRANSISTOR)" (layer F.Cu) (tedit 53C59C65)
+(module PMDPB28UN (layer F.Cu) (tedit 53C59C65)
   (descr "<b>DFN-6 (2x2)mm with 2 interior pads</b> (SOT1118), 0.65 mm typical thickness <br> This package is used exclusively for dual transistors. <br> I believe Fairchild calls it \"MicroFet\" (maybe slightly incompatible), NXP calls it DFN2020-6.")
+  (attr smd)
   (fp_text reference Q110 (at 0.8 -1.65) (layer F.SilkS)
     (effects (font (size 0.38608 0.38608) (thickness 0.057912)) (justify right top))
   )

@@ -1,5 +1,6 @@
-(module "CRYSTAL-3.2X2.5(4_TERMINAL)" (layer F.Cu) (tedit 53C59C65)
+(module "CRYSTAL-3.2X2.5(4_TERMINAL)" (layer F.Cu) (tedit 56C26295)
   (descr "<b>Crystal Packge</b> 3.2x2.5 mm <br>4 terminals, grounded case.")
+  (attr smd)
   (fp_text reference X60 (at -1.5 2.35 180) (layer F.SilkS)
     (effects (font (size 0.38608 0.38608) (thickness 0.057912)) (justify right top))
   )
