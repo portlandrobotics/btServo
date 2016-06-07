@@ -1,0 +1,4 @@
+loadfile /Users/scott/src/nRF51_SDK_current/components/softdevice/s110/hex/s110_softdevice.hex
+r
+g
+exit
